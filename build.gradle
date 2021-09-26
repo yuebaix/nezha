@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+}
+
+allprojects {
+    group = 'com.yuebaix'
+    version = '0.0.1-SNAPSHOT'
+}
+
+subprojects {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}

@@ -1,0 +1,3 @@
+rootProject.name = 'nezha'
+include 'nezha-core'
+
