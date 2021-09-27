@@ -4,4 +4,14 @@ plugins {
 }
 
 dependencies {
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testCompileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+
+    //testImplementation 'junit:junit'
+
+    //implementation 'org.springframework:spring-core'
+    implementation 'org.springframework:spring-context'
+    //implementation 'org.springframework:spring-aop'
 }

@@ -1,0 +1,28 @@
+apply plugin: 'maven-publish'
+apply plugin: "io.spring.dependency-management"
+
+ext {
+    springVersion = '5.2.16.RELEASE'
+    springBootVersion = '2.3.12.RELEASE'
+
+    java_version = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+
+    lombokVersion = '1.18.20'
+}
+
+dependencyManagement {
+    resolutionStrategy {
+        cacheChangingModulesFor 0, 'seconds'
+    }
+
+    imports {
+        mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
+        mavenBom "org.springframework:spring-framework-bom:${springVersion}"
+    }
+
+    dependencies {
+        dependency "org.projectlombok:lombok:${lombokVersion}"
+    }
+}

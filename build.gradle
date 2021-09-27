@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 }
 
 allprojects {
@@ -8,11 +9,35 @@ allprojects {
 }
 
 subprojects {
+    apply from: "${rootDir}/nezha-dependencies.gradle"
+    //apply from: "${rootDir}/oss-publish.gradle"
+
+    apply plugin: 'java'
+
     repositories {
-        mavenCentral()
+        //mavenLocal()
+        //maven { url 'https://s01.oss.sonatype.org/content/repositories/snapshots/' }
+        //maven { url 'https://s01.oss.sonatype.org/content/groups/staging/' }
+        //maven { url 'https://s01.oss.sonatype.org/content/repositories/releases/' }
+        //mavenCentral()
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public' }
     }
 
     dependencies {
+    }
+
+    jar {
+        afterEvaluate {
+            manifest {
+                attributes 'Implementation-Title': archiveBaseName
+                attributes 'Implementation-Version': archiveVersion
+                attributes 'Built-Gradle': gradle.gradleVersion
+                attributes 'Bundle-DocURL': 'https://docs.yuebaix.com/docs/nezha/'
+                attributes 'Build-OS': System.getProperty("os.name")
+                attributes 'Build-Jdk': System.getProperty("java.version")
+                attributes 'Build-Timestamp': LocalDateTime.now().format("yyyy-MM-dd HH:mm:ss")
+            }
+        }
     }
 }
 
