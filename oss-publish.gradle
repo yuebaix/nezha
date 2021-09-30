@@ -88,13 +88,3 @@ publishing {
 signing {
     sign publishing.publications.mavenJava
 }
-
-gradle.taskGraph.whenReady {
-    tasks.each { task ->
-        if (['pangu-test'].contains(project.name)
-                && ['publish', 'publishMavenJavaPublicationToMavenRepository', 'publishToMavenLocal', 'publishMavenJavaPublicationToMavenLocal'].contains(task.name)) {
-            task.enabled = false
-        }
-    }
-}
-
